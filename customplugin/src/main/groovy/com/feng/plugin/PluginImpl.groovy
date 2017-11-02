@@ -1,4 +1,4 @@
-package com.feng.plug
+package com.feng.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -9,9 +9,5 @@ public class PluginImpl implements Plugin<Project> {
         project.task('testTask') << {
             println "Hello gradle plugin"
         }
-    }
-
-    def abc() {
-        return ""
     }
 }
