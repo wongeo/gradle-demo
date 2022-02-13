@@ -1,0 +1,78 @@
+/***
+ * 如果打印的信息中有中文，会出现乱码，在自定义VM配置中设置，-Dfile.encoding=utf-8
+ * Help->Edit Custom VM Options
+ */
+
+//声明一个自定义任务，自动会执行。
+//字符串
+task stringText {
+    def str1 = "abc";
+    def str2 = "123";
+
+    //字符串的两种拼接方式
+    println("${str1}-------${str2}")
+    println(str1 + str2)
+}
+
+//数组
+task list {
+    def list = [1, 2, 3, 4, 5]
+    def week = ['one', 'two', 'three']
+    println('打印数组')
+    println(list)
+    println(week)
+    println("遍历打印数组")
+    for (int i in list) {
+        println(i)
+    }
+}
+
+
+method1 {
+    println(it.last + it.name)
+    it.name = '小红'
+}
+
+def method1(Closure closure) {
+    Person person = new Person();
+    person.name = '小明'
+    person.age = 20;
+    person.last = '王'
+    closure(person)
+    println('闭包后' + person.age)
+    println(person.last + person.name)
+}
+
+class Person {
+    def name;
+    int age;
+    String last;
+
+    void setName(name) {
+        this.name = name
+    }
+
+    void setAge(int age) {
+        this.age = age
+    }
+
+    void setLast(String last) {
+        this.last = last
+    }
+}
+
+def value = getConfig('sdk.dir')
+println 'sdk.dir=' + value
+
+//读取配置文件
+def getConfig(def key) {
+    def value
+    Properties properties = new Properties();
+    def proFile = file(project.rootDir.toString() + '\\local.properties')
+    properties.load(new FileInputStream(proFile))
+    value = properties[key]
+    //InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;//另一种读取文件流方式
+    return value
+}
+
+
