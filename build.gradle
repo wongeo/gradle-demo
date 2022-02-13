@@ -2,24 +2,20 @@
 //内目录的构建脚本
 buildscript {
     repositories {
-        maven {
-            url uri('file:///D:/repo')
-            //可以打印出来查看url设置的值
-            println(it.getUrl().toString());
-        }
-        maven {
-            println(it)
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-        }
+        maven { url uri('file:///D:/repo') }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         mavenLocal()
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
     }
+    repositories.all {
+        //打印各个仓库的指向地址
+        println(it.name + "=" + it.url)
+    }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
-//        classpath  'com.feng.plugin:customplugin:1.0.0-SNAPSHOT'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -28,9 +24,7 @@ buildscript {
 allprojects {
     //项目本身需要的依赖，配置所有的公共依赖
     repositories {
-        maven {
-            url uri('file:///D:/repo')
-        }
+        maven { url uri('file:///D:/repo') }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         mavenLocal()
