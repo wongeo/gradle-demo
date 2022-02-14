@@ -1,10 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 //内目录的构建脚本
+
 buildscript {
+
+    ext {
+        maven = 'http://maven.aliyun.com/nexus/content/groups/public/'
+        maven2 = 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+    }
+
     repositories {
-        maven { url uri('file:///D:/repo') }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url rootProject.ext.maven }
+        maven { url rootProject.ext.maven2 }
         mavenLocal()
         google()
         mavenCentral()
@@ -24,9 +30,8 @@ buildscript {
 allprojects {
     //项目本身需要的依赖，配置所有的公共依赖
     repositories {
-        maven { url uri('file:///D:/repo') }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url rootProject.ext.maven }
+        maven { url rootProject.ext.maven2 }
         mavenLocal()
         google()
         mavenCentral()
