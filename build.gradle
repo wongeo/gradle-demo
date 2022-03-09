@@ -4,13 +4,18 @@
 buildscript {
 
     ext {
-        maven = 'http://maven.aliyun.com/nexus/content/groups/public/'
-        maven2 = 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+        maven = [
+                'http://maven.aliyun.com/nexus/content/groups/public/',
+                'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+        ]
     }
 
     repositories {
-        maven { url rootProject.ext.maven }
-        maven { url rootProject.ext.maven2 }
+        rootProject.ext.maven.each{
+            def _url = it
+            maven { url _url }
+        }
+
         mavenLocal()
         google()
         mavenCentral()
@@ -21,7 +26,7 @@ buildscript {
         println(it.name + "=" + it.url)
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:4.1.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -30,8 +35,10 @@ buildscript {
 allprojects {
     //项目本身需要的依赖，配置所有的公共依赖
     repositories {
-        maven { url rootProject.ext.maven }
-        maven { url rootProject.ext.maven2 }
+        rootProject.ext.maven.each{
+            def _url = it
+            maven { url _url }
+        }
         mavenLocal()
         google()
         mavenCentral()
