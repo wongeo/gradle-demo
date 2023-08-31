@@ -1,0 +1,6 @@
+TaskExecutionGraph taskGraph = gradle.getTaskGraph()
+taskGraph.afterTask { Task task ->
+    if (task.name == "preBuild") {
+        println("task.project.name=" + task.project.name)
+    }
+}

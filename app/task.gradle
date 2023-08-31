@@ -29,7 +29,7 @@ task list {
 
 
 method1 {
-    println(it.last + it.name)
+    println(it.name)
     it.name = '小红'
 }
 
@@ -37,10 +37,9 @@ def method1(Closure closure) {
     Person person = new Person();
     person.name = '小明'
     person.age = 20;
-    person.last = '王'
     closure(person)
-    println('闭包后' + person.age)
-    println(person.last + person.name)
+    println('闭包后')
+    println(person.name)
 }
 
 class Person {
