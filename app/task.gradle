@@ -74,4 +74,14 @@ def getConfig(def key) {
     return value
 }
 
-
+//读取文件并且逐行打印
+def readFileWithPrint() {
+    File file = file("test.txt")
+    file.eachLine { line ->
+        line = line.trim()
+        if (line.size() == 0 || line.startsWith("//") || line.startsWith("#") || line.startsWith("\$")) {
+            return
+        }
+        println(line)
+    }
+}
