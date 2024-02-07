@@ -1,6 +1,9 @@
 //配置当前Module的属性
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.feng.plugin'
+feng {
+    name = "abc,abck"
+}
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
@@ -26,5 +29,5 @@ dependencies {
 }
 
 //关联多文件
-apply from:'task.gradle'
-apply from: 'task2.gradle'
+//apply from:'task.gradle'
+//apply from: 'task2.gradle'
